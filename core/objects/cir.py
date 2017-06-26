@@ -10,4 +10,4 @@ class Circle:
         print "draw"
 
     def drawCircle(self, screen):
-        pygame.draw.circle(screen, (  0,   0, 255), (300, 50), 20, 0)
+        pygame.draw.circle(screen, (  0,   0, 255), (50, 0), 60, 0)

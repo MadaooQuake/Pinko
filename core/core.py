@@ -9,9 +9,12 @@ class Screen:
         screen = pygame.display.set_mode((1024, 576))
         done = False
         Circle().drawCircle(screen)
-        pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(30, 30, 60, 60))
+
+
         while not done:
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    print "to do"
                 if event.type == pygame.QUIT:
                     done = True
             pygame.display.flip()
