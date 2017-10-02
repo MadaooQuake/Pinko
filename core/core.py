@@ -8,16 +8,29 @@ class Screen:
         pygame.init
         screen = pygame.display.set_mode((1024, 576))
         done = False
-        Circle().drawCircle(screen)
-
+        circle = Circle()
+        circle.setCirclePositions(100,100)
+        circle.drawCircle(screen)
+        
+        clock = pygame.time.Clock()
 
         while not done:
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    print "to do"
+            for event in pygame.event.get(): 
                 if event.type == pygame.QUIT:
                     done = True
+            
+            pressed = pygame.key.get_pressed()
+            if pressed[pygame.K_UP]:
+                circle.moveCircle(screen, 0, -5)
+            if pressed[pygame.K_DOWN]:
+                circle.moveCircle(screen, 0, 5)
+            if pressed[pygame.K_LEFT]:
+                circle.moveCircle(screen, -5, 0)
+            if pressed[pygame.K_RIGHT]:
+                circle.moveCircle(screen, 5, 0)
+                
             pygame.display.flip()
+            clock.tick(60)
 
 if __name__ == "__main__":
     scr = Screen()
