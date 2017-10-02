@@ -19,6 +19,7 @@ class Screen:
                 if event.type == pygame.QUIT:
                     done = True
             
+            #this element move to another file
             pressed = pygame.key.get_pressed()
             if pressed[pygame.K_UP]:
                 circle.moveCircle(screen, 0, -5)
@@ -29,6 +30,7 @@ class Screen:
             if pressed[pygame.K_RIGHT]:
                 circle.moveCircle(screen, 5, 0)
                 
+            # next step is colision
             pygame.display.flip()
             clock.tick(60)
 

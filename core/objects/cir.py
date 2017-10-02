@@ -23,3 +23,11 @@ class Circle:
         self.positionY += y
         self.positionX += x
         pygame.draw.circle(screen, (  0,   0, 255), (self.positionX, self.positionY), 60, 0)
+        
+    def getPositionX(self):
+        return positionX
+    
+    def getPositionY(self):
+        return positionY
+    
+        
