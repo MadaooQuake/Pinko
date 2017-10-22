@@ -2,19 +2,24 @@
 import pygame
 from collision import Collision
 from objects.cir import Circle
+from controls import Control
 
 class Screen:
     screen_width = 1024
     screen_height = 576
+    move_available = True;
     def __init__(self):
         
         pygame.init
+        control = Control()
         screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         done = False
         circle = Circle()
         circle.set_circle_positions(100,100)
         circle.draw_circle(screen)
         check_colision = Collision()
+        check_colision.set_width_and_height(self.screen_width, self.screen_height)
+        Control
         
         clock = pygame.time.Clock()
 
@@ -23,18 +28,11 @@ class Screen:
                 if event.type == pygame.QUIT:
                     done = True
             
-            #this element move to another file
-            pressed = pygame.key.get_pressed()
-            if pressed[pygame.K_UP]:
-                circle.move_circle(screen, 0, -5)
-            if pressed[pygame.K_DOWN]:
-                circle.move_circle(screen, 0, 5)
-            if pressed[pygame.K_LEFT]:
-                circle.move_circle(screen, -5, 0)
-            if pressed[pygame.K_RIGHT]:
-                circle.move_circle(screen, 5, 0)
-            check_colision.check_board(circle.get_position_x(), circle.get_position_y())
-            # next step is colision
+            control.get_event(pygame.key.get_pressed())
+            control.check_key()
+            check_colision.get_move(control.get_x(), control.get_y())
+            if check_colision.check_board(circle.get_position_x(),circle.get_position_y()):
+                circle.move_circle(screen, control.get_x(), control.get_y())
             
             pygame.display.flip()
             clock.tick(60)
